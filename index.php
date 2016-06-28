@@ -8,7 +8,7 @@
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'/>
     <title>Comments</title>
 </head>
-<body>
+<body onload="depth()">
 <div class='wrapper'>
     <form class='comment_form' method='post' action=''>
         <input type='text' id='name' placeholder='Your name' required>

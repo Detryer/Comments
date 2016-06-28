@@ -27,6 +27,11 @@ function addComment() {
         }
     });
 }
+
+function depth(){
+    $('.reply:last').remove();
+}
+
 $(document).ready(function () {
 
     $('a.reply').click(function () {
@@ -41,7 +46,7 @@ $(document).ready(function () {
             "<button id='add'>Add</button>" +
             "</div>");
 
-        $('button').click(function () {
+            $('button').click(function () {
             var name = $('#name_reply').val();
             var text = $('#text_reply').val();
             var parent_id = id;

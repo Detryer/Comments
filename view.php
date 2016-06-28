@@ -1,5 +1,5 @@
 <?php
-require_once ("db.php");
+require_once("db.php");
 
 function viewComments() {
     global $mysqli;
@@ -8,15 +8,16 @@ function viewComments() {
     $result = $mysqli->query($query);
 
     while ($row = $result->fetch_assoc()) {
-        getComment($row);
+        getComment($row, 0);
     }
 }
 
-function getComment($row){
+function getComment($row, $depth) {
     global $mysqli;
+    static $depth;
 
     echo "<li class='comment'>";
-    echo "<div class='name'>{$row['name']}</div>";
+    echo "<div class='name'>{$row['name']}{$depth}</div>";
     echo "<div class='date'>{$row['date']}</div>";
     echo "<p class='comment_text'>{$row['text']}</p>";
     echo "<a href='#' class='delete' id='{$row['id']}'>Delete</a>";
@@ -25,17 +26,19 @@ function getComment($row){
     $query = ("SELECT * FROM `comments` WHERE `parent_id`='{$row['id']}'");
     $res = $mysqli->query($query);
 
-    $i = 0;
-    if($res->num_rows > 0 && $i < 5){
+    if ($res->num_rows > 0) {
         echo "<ul class='commentslist'>";
-        while($result = $res->fetch_assoc()){
-            getComment($result);
+        while ($result = $res->fetch_assoc()) {
+            if ($depth < 6) {
+                getComment($result, $depth++);
+            }
         }
         echo "</ul>";
-        $i++;
     }
 
     echo "</li>";
+    $depth++;
 }
+
 
 ?>
