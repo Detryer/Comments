@@ -17,7 +17,7 @@ function getComment($row, $depth) {
     static $depth;
 
     echo "<li class='comment'>";
-    echo "<div class='name'>{$row['name']}{$depth}</div>";
+    echo "<div class='name'>{$row['name']}</div>";
     echo "<div class='date'>{$row['date']}</div>";
     echo "<p class='comment_text'>{$row['text']}</p>";
     echo "<a href='#' class='delete' id='{$row['id']}'>Delete</a>";
