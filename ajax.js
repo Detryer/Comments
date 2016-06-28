@@ -28,9 +28,9 @@ function addComment() {
     });
 }
 
-function depth(){
-    $('.reply:last').remove();
-}
+//function depth(){
+//    $('.comment').children('.reply:last').remove();
+//}
 
 $(document).ready(function () {
 
